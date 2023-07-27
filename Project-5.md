@@ -10,7 +10,6 @@ In their communication, each machine has its own role: the machine sending reque
 A simple diagram of Web Client-Server architecture is presented below:
 
 
-
 In the example above, a machine that is trying to access a Web site using Web browser or simply ‘curl’ command is a client and it sends HTTP requests to a Web server (Apache, Nginx, IIS or any other) over the Internet.
 
 If we extend this concept further and add a Database Server to our architecture, we can get this picture:
@@ -60,14 +59,19 @@ Server B name - `mysql client`
 On mysql server Linux Server install MySQL Server software.
 Interesting fact: MySQL is an open-source relational database management system. Its name is a combination of “My”, the name of co-founder Michael Widenius’s daughter, and “SQL”, the abbreviation for Structured Query Language.
 
+![mysql-client](./images/mysql-client.png)
+
+![mysql-client](./images/mysql-server%20conf.png)
+
+![mysql-running](./images/mysql-running.png)
+
 On mysql client Linux Server install MySQL Client software.
 By default, both of your EC2 virtual servers are located in the same local virtual network, so they can communicate to each other using local IP addresses. Use mysql server's local IP address to connect from mysql client. MySQL server uses TCP port 3306 by default, so you will have to open it by creating a new entry in ‘Inbound rules’ in ‘mysql server’ Security Groups. For extra security, do not allow all IP addresses to reach your ‘mysql server’ – allow access only to the specific local IP address of your ‘mysql client’.
 You might need to configure MySQL server to allow connections from remote hosts.
 sudo vi /etc/mysql/mysql.conf.d/mysqld.cnf
 Replace ‘127.0.0.1’ to ‘0.0.0.0’ like this:
 
-
-
+![databases](./images/databases.png)
 
 From mysql client Linux Server connect remotely to mysql server Database Engine without using SSH. You must use the mysql utility to perform this action.
 Check that you have successfully connected to a remote MySQL server and can perform SQL queries:
